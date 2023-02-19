@@ -1,0 +1,36 @@
+const  mongoose = require('mongoose');
+const UserSchema= new mongoose.Schema({
+    email:{
+        type:String,
+        required:true,
+        min:2,
+        max:20,
+        //unique:false
+    },
+    password:{
+        type:String,
+        required:true,
+        unique:true
+    }, 
+    isActive:{
+        type:String,
+        required:true,
+        unique:true
+    },
+    role:{
+        type:String,
+        required:true,
+    }, 
+    parentId:{
+        type:String,
+    }, 
+    teacherId:{
+        type:String,
+    }, 
+    resetLink:{
+        type:String, 
+    } 
+},
+{timestamps:true}
+);
+module.exports=mongoose.model("User",UserSchema);
