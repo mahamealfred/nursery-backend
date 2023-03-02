@@ -5,6 +5,9 @@ class userController{
     static async signIn(req, res) {
        res.send("Hello from User ")
     }
+    static async signUp(req, res) {
+      
+     }
 
 }
 module.exports =userController
