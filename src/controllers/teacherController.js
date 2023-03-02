@@ -16,7 +16,7 @@ class teacherController{
                     telephone,
                     fullName
                   }); 
-                  const teachId=data._id
+                  const teachId=data.telephone
                   const dataUser= await User.create({
                     email:null,
                     password:null,

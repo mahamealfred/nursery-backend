@@ -13,21 +13,15 @@ class parentController{
                     message: "The below Phone number is already exist",
                   });  
             }
-            else if(checkEmail){
-                return res.status(200).json({
-                    statusCode: 400,
-                    message: "The email below is already in use",
-                  });  
-            }
             else{
                 const data= await Parent.create({
                     telephone,
                     fatherName,
                     motherName
                   }); 
-                  const parentId=data._id
+                  const parentId=data.telephone
                   const dataUser= await User.create({
-                    email:email,
+                    email:null,
                     password:null,
                     isActive:true,
                     role:"Parent",
