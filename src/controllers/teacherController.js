@@ -43,8 +43,25 @@ class teacherController{
                 message: error.message,
               });  
         }
-   
     }
+    static async getTeachers(req, res) {
+      try {
+              const data= await Teacher.find(); 
+                return res.status(200).json({
+                  statusCode: 200,
+                  status:"SUCCESS",
+                  data: data,
+                });
+      
+      } catch (error) {
+          return res.status(500).json({
+              statusCode: 500,
+              status:"FAILED",
+              message: error.message,
+            });  
+      }
+ 
+  }
 
 }
 module.exports =teacherController

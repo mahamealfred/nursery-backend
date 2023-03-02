@@ -1,43 +1,37 @@
 const { model } = require("mongoose");
-const Classe=require("../models/Classe");
+const Message=require("../models/Message");
 const Teacher=require("../models/Teacher");
+const Parent=require("../models/Parent");
 
 class classController{
-    static async addClass(req, res) {
-        const {teacherId,className}=req.body
+    static async addMessage(req, res) {
+        const {teacherId,message,parentId}=req.body
         try {
             const checkTeacher=await Teacher.findOne({telephone:teacherId});
-            const checkClassName=await Classe.findOne({className:className});
-            const checkTeacherId=await Classe.findOne({teacherId:teacherId});
+            const checkParent=await Parent.findOne({telephone:parentId});
+        
             if(!checkTeacher){
                 return res.status(200).json({
                     statusCode: 400,
-                    message: "The teacher with below phone number doesn't exist",
+                    message: "The Teacher phone number doesn't exist",
                   });  
             }
-            else if(checkClassName){
+            else if(!checkParent){
                 return res.status(200).json({
                     statusCode: 400,
-                    message: "The below class is already exist",
-                  }); 
-            }
-            else if(checkTeacherId){
-                return res.status(200).json({
-                    statusCode: 400,
-                    message: "The teacher has already assigned a classe",
-                  }); 
+                    message: "The Parent phone number doesn't exist",
+                  });  
             }
             else{
-                const teacherName=checkTeacher.fullName
-                const data= await Classe.create({
-                    teacherId,
-                    className,
-                    teacherName:teacherName
+                const data= await Message.create({
+                 message,
+                 teacherId,
+                 parentId
                   }); 
                   return res.status(200).json({
                     statusCode: 200,
                     status:"SUCCESS",
-                    message: "Successfull created",
+                    message: "Message Sent",
                     data: data,
                   });
             }

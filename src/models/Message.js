@@ -1,18 +1,16 @@
 const  mongoose = require('mongoose');
-const ClasseSchema= new mongoose.Schema({
-    className:{
+const MessageSchema= new mongoose.Schema({
+    message:{
         type:String,
         min:2,
-        max:20,
-      unique:true
+        max:100
     },
     teacherId:{
         type:String,
         min:2,
-        max:20,
-      unique:true
+        max:20
     },
-    teacherName:{
+    parentId:{
       type:String,
       min:2,
 
@@ -20,4 +18,4 @@ const ClasseSchema= new mongoose.Schema({
 },
 {timestamps:true}
 );
-module.exports=mongoose.model("Classe",ClasseSchema);
+module.exports=mongoose.model("Message",MessageSchema);
