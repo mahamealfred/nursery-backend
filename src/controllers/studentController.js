@@ -2,6 +2,7 @@ const Student=require("../models/Student");
 const Classe=require("../models/Classe");
 const Parent=require("../models/Parent");
 const generateRegNumber = require("../helpers/regNumberGenerator");
+const { decode } = require("../helpers/jwtTokenizer");
 class StudentController{
     static async addStudent(req, res) {
         const { firstName,lastName,dob,parentId,classId}=req.body
@@ -68,6 +69,29 @@ class StudentController{
       }
  
   }
+  static async getStudentsByClassId(req, res) {
+    const token = req.headers["token"];
+    const Token = await decode(token);
+    const teacherId=Token.teacherId
+    const findClass=await Classe.findOne({teacherId:teacherId})
+    const classId=findClass._id
+    try {
+            const data= await Student.find({classId:classId}); 
+              return res.status(200).json({
+                statusCode: 200,
+                status:"SUCCESS",
+                data: data,
+              });
+    
+    } catch (error) {
+        return res.status(500).json({
+            statusCode: 500,
+            status:"FAILED",
+            message: error.message,
+          });  
+    }
+
+}
 
 }
 module.exports =StudentController

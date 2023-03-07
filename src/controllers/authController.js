@@ -83,6 +83,8 @@ class userController{
                 email,
                 telephone,
                 role,
+                teacherId,
+                parentId
               });
               //const decodedToken = await decode(token);
               return res.status(200).json({

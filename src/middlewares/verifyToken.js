@@ -1,5 +1,5 @@
 //const { decode } =require("../helpers/jwtTokenizer");
-const jwt=reqire("jsonwebtoken");
+const jwt=require("jsonwebtoken");
 const dotenv=require("dotenv");
 dotenv.config();
 
