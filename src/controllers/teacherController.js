@@ -30,8 +30,7 @@ class teacherController{
                   return res.status(200).json({
                     statusCode: 200,
                     status:"SUCCESS",
-                    message: "Successfull created",
-                    data: {data,dataUser},
+                    message: "Account Created Successfully"
                   });
 
             }

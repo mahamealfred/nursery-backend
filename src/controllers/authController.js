@@ -66,7 +66,7 @@ class userController{
         const checkUser=await User.findOne({email:email})
         if (!checkUser) {
           return res.status(404).json({
-            status: 404,
+            statusCode: 404,
             message: "Email doesn't exist",
           });
         }

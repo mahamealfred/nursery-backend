@@ -1,5 +1,5 @@
 const express = require("express");
-const userRoute=require("./auth.routes.js")
+const userRoute=require("./user.routes.js")
 const authRoute=require("./auth.routes.js")
 const teacherRoute=require('./teacher.routes');
 const classRoute=require('./class.routes');
@@ -7,6 +7,7 @@ const parentRoute=require('./parent.routes');
 const messageRoute=require('./message.routes');
 const studentRoute=require('./student.routes');
 const attendanceRoute=require('./attendance.routes');
+
 const router=express.Router()
 
 router.use('/api/authentication',authRoute)

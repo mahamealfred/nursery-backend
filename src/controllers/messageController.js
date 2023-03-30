@@ -2,6 +2,7 @@ const { model } = require("mongoose");
 const Message=require("../models/Message");
 const Teacher=require("../models/Teacher");
 const Parent=require("../models/Parent");
+const { decode } = require("../helpers/jwtTokenizer");
 
 class classController{
     static async addMessage(req, res) {
@@ -45,14 +46,26 @@ class classController{
         }
    
     }
-    static async getClasses(req, res) {
+    static async getMessages(req, res) {
+      const token = req.headers["token"];
+    
+      const decodedToken = await decode(token);
+      const teacherId=decodedToken.teacherId
+      console.log("token", teacherId)
         try {
-                const data= await Classe.find(); 
+                const data= await Message.find({teacherId:teacherId}); 
+                if(data){
                   return res.status(200).json({
                     statusCode: 200,
                     status:"SUCCESS",
                     data: data,
                   });
+                }
+                return res.status(200).json({
+                  statusCode: 404,
+                  status:"FAILED",
+                  message:"No data found",
+                });
         
         } catch (error) {
             return res.status(500).json({
