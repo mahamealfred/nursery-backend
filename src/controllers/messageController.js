@@ -48,10 +48,8 @@ class classController{
     }
     static async getMessages(req, res) {
       const token = req.headers["token"];
-    
       const decodedToken = await decode(token);
       const teacherId=decodedToken.teacherId
-      console.log("token", teacherId)
         try {
                 const data= await Message.find({teacherId:teacherId}); 
                 if(data){

@@ -7,7 +7,7 @@ const parentRoute=require('./parent.routes');
 const messageRoute=require('./message.routes');
 const studentRoute=require('./student.routes');
 const attendanceRoute=require('./attendance.routes');
-
+const subjectRoute=require('./subject.routes');
 const router=express.Router()
 
 router.use('/api/authentication',authRoute)
@@ -18,5 +18,6 @@ router.use('/api/parents',parentRoute)
 router.use('/api/messages',messageRoute)
 router.use('/api/students',studentRoute)
 router.use('/api/attendances',attendanceRoute);
+router.use('/api/subjects',subjectRoute);
 
 module.exports =router
